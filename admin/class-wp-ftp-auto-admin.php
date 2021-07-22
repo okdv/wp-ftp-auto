@@ -94,7 +94,7 @@ class Wp_Ftp_Auto_Admin {
 	 * @since    1.0.0
 	 */
 	public function admin_menu() {
-		add_menu_page( "FTP Automation Admin", "FTP Automation", "manage_options", "wp-ftp-auto", array($this,'admin_menu_page'));
+		add_management_page( "FTP Automation Admin", "FTP Automation", "manage_options", "wp-ftp-auto", array($this,'admin_menu_page'));
 	}
 
 	/**

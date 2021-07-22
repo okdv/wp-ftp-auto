@@ -19,7 +19,7 @@ This plugin offers a variety of functions related to handling automated FTP acti
 ## How to use
 1. Download and activate the most recent version
     - See Recommended Usage for other helpful plugin types to have
-1. Navigate to the FTP Automation menu button on the admin sidebar
+1. Navigate to the FTP Automation menu item under the Tools section in the admin sidebar
 1. Complete form
     - ***ID:** Input a unique ID for new jobs, or an existing ID to update a job
     - ***FTP Server:** A working address, no trailing slashes and no `ftp://` prefix. See [ftp_connect](https://www.php.net/manual/en/function.ftp-connect.php) for more info on connection method.
