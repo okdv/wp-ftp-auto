@@ -1,0 +1,22 @@
+/* admin menu css */
+
+#wp-ftp-auto-admin {
+    text-align: center;
+    display: grid;
+}
+
+#wp-ftp-auto-admin form {
+    margin: auto;
+}
+
+#wp-ftp-auto-admin .submit {
+    text-align: center;
+}
+
+#wp-ftp-auto-admin .form-table th {
+    text-align: right;
+}
+
+#wp-ftp-auto-admin .form-table td {
+    text-align: left;
+}
