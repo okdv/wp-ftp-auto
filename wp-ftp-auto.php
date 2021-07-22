@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       WP FTP Automation
  * Plugin URI:        https://github.com/okdv/wp-ftp-auto
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Import/Export files via FTP between your WordPress environment and a remote server. One time now, one time scheduled, and recurring jobs are available. 
  * Version:           1.0.0
  * Author:            Otho DuBoise
  * Author URI:        https://otho.dev

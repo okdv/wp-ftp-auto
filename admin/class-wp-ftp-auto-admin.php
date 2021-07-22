@@ -59,9 +59,10 @@ class Wp_Ftp_Auto_Admin {
 		$this->version = $version;
 		$this->cipher = "AES-128-CBC";
 		$this->key = AUTH_KEY;
-		$ivlen = openssl_cipher_iv_length($this->cipher);
-		$this->iv = openssl_random_pseudo_bytes($ivlen);
-		// iv is causing issues...
+		$iv_len = openssl_cipher_iv_length($this->cipher);
+		// generated string is 2x longer than length
+		// more compatible alternative to openssl_random_pseudo_bytes
+		$this->iv = bin2hex(random_bytes($iv_len / 2)); 
 	}
 
 	/**
@@ -119,7 +120,7 @@ class Wp_Ftp_Auto_Admin {
 		$creds = $_POST["username"] . "::" . $_POST["password"];
 		$encrypted = openssl_encrypt($creds,$this->cipher,$this->key,0,$this->iv);
 
-		$args = array($_POST["server"],$encrypted,$this->iv,$_POST["local-filename"],$_POST["server-path"]);
+		$args = array($_POST["job-id"],$_POST["server"],$encrypted,$this->iv,$_POST["local-filename"],$_POST["server-path"]);
 
 		if ($interval === "once") {
 			wp_schedule_single_event( $time, $hook, $args );
@@ -135,7 +136,7 @@ class Wp_Ftp_Auto_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function ftp_import($server,$encrypted,$iv,$filename,$path) {
+	public function ftp_import($id,$server,$encrypted,$iv,$filename,$path) {
 		$creds = $this->decrypt($encrypted,$iv);
 		$u = $creds[0];
 		$pw = $creds[1];
@@ -154,7 +155,7 @@ class Wp_Ftp_Auto_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function ftp_export($server,$encrypted,$iv,$filename,$path) {
+	public function ftp_export($id,$server,$encrypted,$iv,$filename,$path) {
 		$creds = $this->decrypt($encrypted,$iv);
 		$u = $creds[0];
 		$pw = $creds[1];

@@ -30,17 +30,26 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-function delete_dir($path) {
-    if (empty($path)) { 
-        return false;
+function delete_dir($dir) {
+    if(is_dir($dir)) {
+        $objs = scandir($dir);
+        foreach($objs as $obj) {
+            if ($obj != "." && $obj != "..") {
+                $obj_path = $dir."/".$obj;
+                if (filetype($obj_path) == "dir") {
+                    delete_dir($obj_path);
+                } else {
+                    unlink($obj_path);
+                }
+            }
+        }
+        reset($objs);
+        rmdir($dir);
     }
-    return is_file($path) ?
-            @unlink($path) :
-            array_map(__FUNCTION__, glob($path.'/*')) == @rmdir($path);
 }
 
 if (defined('WP_FTP_AUTO_DIRS')) {
-	foreach(WP_FTP_AUTO_DIRS as $dir) {
-		delete_dir($dir);
-	}
+	delete_dir(WP_FTP_AUTO_DIRS[0]);
+} else {
+    delete_dir(WP_CONTENT_DIR . "/uploads/wp-ftp-auto/");
 }

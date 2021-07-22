@@ -158,8 +158,8 @@ class Wp_Ftp_Auto {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu');
 		$this->loader->add_action( 'admin_post_schedule_job',$plugin_admin,'process_form');
-		$this->loader->add_action('ftp_import_event',$plugin_admin,'ftp_import',10,5);
-		$this->loader->add_action('ftp_export_event',$plugin_admin,'ftp_export',10,5);
+		$this->loader->add_action('ftp_import_event',$plugin_admin,'ftp_import',10,6);
+		$this->loader->add_action('ftp_export_event',$plugin_admin,'ftp_export',10,6);
 
 	}
 
