@@ -53,7 +53,7 @@ class Wp_Ftp_Auto_Admin {
 
 	public function __construct( $plugin_name, $version ) {
 
-		require(get_home_path() . "wp-config.php");
+		include_once ABSPATH . "wp-config.php"; 
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
